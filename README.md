@@ -12,5 +12,9 @@
 # user / admin demo
 - user account  : patient
 - user password : 123123123
+
+- user account2  : patient2
+- user password2 : 123123123
+
 - admin account : admin1
 - admin password : 123123123

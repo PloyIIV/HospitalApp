@@ -4,17 +4,16 @@ import { useAuth } from "../contexts/authenContext";
 import axios from "axios";
 
 const Message = ({ id }) => {
-  const { state } = useAuth();
+  const { state, url } = useAuth();
   const [roomId, setRoomId] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  // const url = "http://localhost:3000";
-  const url = 'https://hospital-app-backend-gamma.vercel.app'
 
   const fetchMessage = async (roomId) => {
     const { data } = await supabase
       .from("messages")
       .select("*")
+      .eq('room_id', roomId)
       .order("created_at");
     setMessages(data);
   };
@@ -61,11 +60,12 @@ const Message = ({ id }) => {
         room = newRoom
       }
       setRoomId(room.id)
+      console.log(roomId)
       fetchMessage(room.id)
     }
-    init()
     
-  }, []);
+    if(state?.id) init()
+  }, [state?.id]);
 
   useEffect(() => {
     if(!roomId) return;
