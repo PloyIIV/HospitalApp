@@ -8,7 +8,6 @@ import AuthenticatedAdminApp from "./AuthenticatedAdminApp";
 
 function App() {
   const { isAuthen, state } = useAuth();
-  console.log(state.role);
   return (
     <>
       {isAuthen ? (

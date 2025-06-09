@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/authenContext";
+import { toast, ToastContainer } from "react-toastify";
 
 const EditProfile = () => {
   const navigate = useNavigate();
@@ -17,9 +18,8 @@ const EditProfile = () => {
   });
   const onSubmitHandler = async (e) => {
     e.preventDefault()
-    console.log(value)
     const response = await axios.put(`${url}/auth/profile`, value);
-    console.log(response);
+    toast(response.data.message)
   };
   useEffect(() => {
     setLoading(true);
@@ -32,6 +32,7 @@ const EditProfile = () => {
   }, []);
   return (
     <div className='bg-[url("https://img.freepik.com/free-photo/blurred-abstract-background-interior-view-looking-out-toward-empty-office-lobby-entrance-doors-glass-curtain-wall-with-frame_1339-6363.jpg?semt=ais_hybrid&w=740")] w-screen h-screen bg-no-repeat bg-cover flex justify-center items-center'>
+      <ToastContainer />
       <form
         onSubmit={onSubmitHandler}
         className="w-full mx-3 md:w-1/2 bg-white/80 shadow-xl flex flex-col justify-center items-center rounded-3xl"
