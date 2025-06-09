@@ -1,15 +1,21 @@
 ﻿# HospitalApp
-# to run client side
+<!-- Deployed link -->
+**Client side**: https://hospital-app-rosy.vercel.app/
+
+**Server side**: https://hospital-app-backend-gamma.vercel.app/
+
+--- 
+> command to run client side
 - cd client
 - npm i
 - npm run dev
 
-# to run server side
+> command to run server side
 - cd server
 - npm i
 - npm start
 
-# user / admin demo
+#### user / admin demo
 - user account  : patient
 - user password : 123123123
 
