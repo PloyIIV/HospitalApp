@@ -9,7 +9,7 @@ const Message = ({ id }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   // const url = "http://localhost:3000";
-  const url = 'https://hospital-app-backend-gamma.vercel.app/'
+  const url = 'https://hospital-app-backend-gamma.vercel.app'
 
   const fetchMessage = async (roomId) => {
     const { data } = await supabase
