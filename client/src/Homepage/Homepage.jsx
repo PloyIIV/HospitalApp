@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth } from "../contexts/authenContext";
-import Message from "../ui/message";
+import Message from "../ui/Message";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
