@@ -8,3 +8,9 @@
 - cd server
 - npm i
 - npm start
+
+# user / admin demo
+user account  : patient
+user password : 123123123
+admin account : admin1
+admin password : 123123123
