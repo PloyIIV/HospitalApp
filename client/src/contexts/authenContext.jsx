@@ -16,8 +16,8 @@ const getState = () => {
 }
 
 function AuthProvider(props) {
-    // const url = 'http://localhost:3000'
-    const url = 'https://hospital-app-backend-gamma.vercel.app'
+    const url = 'http://localhost:3000'
+    // const url = 'https://hospital-app-backend-gamma.vercel.app'
     const [loading, setLoading] = useState(null)
     const [state, setState] = useState({})
 

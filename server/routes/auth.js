@@ -18,6 +18,21 @@ authRouter.get('/', protect, async (req, res) => {
   }
 })
 
+authRouter.get('/profile/:id', protect, async (req, res) => {
+  try {
+    const { data, error } = await supabase.from('users').select('*').eq('user_id', req.params.id).single();
+    console.log(data, error)
+    return res.json({
+      data
+    })
+  } catch (error) {
+    console.log(error)
+    return res.json({
+      message: error
+    })
+  }
+})
+
 authRouter.put('/profile', protect, async (req, res) => {
   try {
     const { username, password, firstname, lastname, tel, sex } = req.body

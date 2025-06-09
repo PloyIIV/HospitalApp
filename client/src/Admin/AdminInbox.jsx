@@ -4,6 +4,7 @@ import { useState } from "react";
 import { supabase } from "../utils/supabaseClient";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../contexts/authenContext";
+import Profile from "../Profile/Profile";
 
 const logoutIcon = (
   <svg
@@ -19,9 +20,23 @@ const logoutIcon = (
     <path d="M22.867,9.879,18.281,5.293a1,1,0,1,0-1.414,1.414l4.262,4.263L6,11a1,1,0,0,0,0,2H6l15.188-.031-4.323,4.324a1,1,0,1,0,1.414,1.414l4.586-4.586A3,3,0,0,0,22.867,9.879Z" />
   </svg>
 );
+const searchIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width="15"
+    height="15"
+    fill="white"
+  >
+    <g id="_01_align_center" data-name="01 align center">
+      <path d="M24,22.586l-6.262-6.262a10.016,10.016,0,1,0-1.414,1.414L22.586,24ZM10,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,10,18Z" />
+    </g>
+  </svg>
+);
 
 const AdminInbox = () => {
   const { state, logout } = useAuth();
+  const [expandId, setExpandId] = useState(null);
   const [rooms, setRooms] = useState([]);
   const navigate = useNavigate();
 
@@ -71,13 +86,27 @@ const AdminInbox = () => {
           <hr className="border-gray-300 mb-3" />
           <div className="pb-2">
             {rooms.map((room) => {
+              const isExpanded = expandId === room.user_id;
               return (
                 <div
-                  onClick={() => navigate(`/inbox/${room.id}`)}
                   key={room.id}
-                  className="bg-white border border-gray-100 p-3 mb-1 mx-2 rounded-2xl shadow-2xl cursor-pointer hover:bg-blue-300"
+                  className="bg-white flex justify-between p-3 mb-1 mx-2 rounded-2xl shadow-2xl border border-gray-100 cursor-pointer hover:bg-blue-300"
                 >
-                  <button>ห้องผู้ใช้ {room.user_id}</button>
+                  <button
+                    onClick={() => navigate(`/inbox/${room.id}`)}
+                    className="w-full text-start cursor-pointer"
+                  >
+                    ห้องผู้ใช้ {room.user_id}
+                  </button>
+                  <div
+                    onClick={() =>
+                      setExpandId(isExpanded ? null : room.user_id)
+                    }
+                    className="w-8 h-8 bg-blue-500 flex items-center justify-center rounded-full cursor-pointer hover:bg-blue-200 hover:border-2 hover:border-blue-400"
+                  >
+                    {searchIcon}
+                    {isExpanded ? <Profile id={room.user_id} /> : <></>}
+                  </div>
                 </div>
               );
             })}
