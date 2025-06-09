@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@import "@flaticon/flaticon-uicons/css/all/all";
+
+:root {
+  font-family: 'Prompt', Avenir, Helvetica, Arial, sans-serif;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+}
